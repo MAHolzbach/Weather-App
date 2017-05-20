@@ -12,20 +12,28 @@ body {
   font-size: 5em;
   font-weight: bold;
 }
-.weather {
+.weather, .forecast {
   color: white;
   font-size: 3.5em;
   font-weight: bold;
 }
-.weather a {
+.weather a, .forecast a {
   text-decoration: none;
 }
-.icon {
+.forecast {
+  display: flex;
+}
+.forecast1, .forecast2, .forecast3 {
+  margin-left: 75px;
+  margin-right: 75px;
+}
+
+.icon, .forecast1Icon, .forecast2Icon, .forecast3Icon {
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 12em;
   height: 10em;
-  font-size: 2em; /* control icon size here */
+  font-size: 1em; /* control icon size here */
 }
 
 .cloud {
