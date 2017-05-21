@@ -3,7 +3,7 @@ $(document).ready(function() {
     navigator.geolocation.getCurrentPosition;
   }
 
-  let iconPicker = (icon) => {
+  const iconPicker = (icon) => {
     const rainy = '<div class="icon rainy"><div class="cloud"></div><div class="rain"></div></div>';
     const sunny = '<div class="icon sunny"><div class="sun"><div class="rays"></div></div></div>';
     const overcast = '<div class="icon cloudy"><div class="cloud"></div><div class="cloud"></div></div>';
@@ -32,11 +32,12 @@ $(document).ready(function() {
       'sleet': snowy,
       'snow': snowy
     }
-    return iconObj[icon];
+    $('.icon').append(iconObj[icon]);
+    alert(iconObj[icon]);
   }
 
-  let currentConditions = () => {
-
+  const currentConditions = () => {
+    let icon;
     $.getJSON('http://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/conditions/q/autoip.json', function(json) {
       console.log(json);
       tempf = json.current_observation.temp_f;
@@ -55,11 +56,11 @@ $(document).ready(function() {
           $('.weather').html(tempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
         }
       });
-      $('.icon').append(iconPicker(icon));
+      iconPicker(icon);
     });
   };
 
-  let threeDay = () => {
+  const threeDay = () => {
 
     $.getJSON('http://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/forecast/q/autoip.json', function(json) {
       console.log(json);
