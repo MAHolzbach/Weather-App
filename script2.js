@@ -32,13 +32,19 @@ const iconPicker = (icon) => {
     'flurries': snowy,
     'sleet': snowy,
     'snow': snowy
-  }
+  };
+
+  // for(var key in iconObj) {
+  //   if(iconObj.hasOwnProperty(key)) {
+  //     console.log(iconObj[key]);
+  //   }
+  // }
   $('.icon').append(iconObj[icon]);
-  alert(iconObj[icon]);
+  // console.log(iconObj[icon]);
+  console.log(icon);
 }
 
 const currentConditions = () => {
-  let icon;
   $.getJSON('http://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/conditions/q/autoip.json', function(json) {
     console.log(json);
     tempf = json.current_observation.temp_f;
@@ -58,6 +64,7 @@ const currentConditions = () => {
       }
     });
     iconPicker(icon);
+    return icon;
   });
 };
 
