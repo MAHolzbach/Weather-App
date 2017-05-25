@@ -28,12 +28,19 @@ body {
   margin-right: 75px;
 }
 
-.icon, .forecast1Icon, .forecast2Icon, .forecast3Icon {
+.icon {
   position: relative;
   display: flex;
   width: 12em;
   height: 10em;
   font-size: 1em; /* control icon size here */
+}
+
+.forecast1, .forecast2, .forecast3 {
+  position: relative;
+  width: 6em;
+  height: 5em;
+  font-size: .40em; /* control icon size here */
 }
 
 .cloud {

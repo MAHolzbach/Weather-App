@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 $(document).ready(function() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition;
@@ -5,12 +7,12 @@ $(document).ready(function() {
 });
 
 const iconPicker = (icon) => {
-  const rainy = '<div class="icon rainy"><div class="cloud"></div><div class="rain"></div></div>';
-  const sunny = '<div class="icon sunny"><div class="sun"><div class="rays"></div></div></div>';
-  const overcast = '<div class="icon cloudy"><div class="cloud"></div><div class="cloud"></div></div>';
+  const rainy = '<div class="rainy"><div class="cloud"></div><div class="rain"></div></div>';
+  const sunny = '<div class="sunny"><div class="sun"><div class="rays"></div></div></div>';
+  const overcast = '<div class="cloudy"><div class="cloud"></div><div class="cloud"></div></div>';
   const partlySunny = '<div class="cloud"></div><div class="sun"><div class="rays"></div></div>';
-  const stormy = '<div class="icon thunder-storm"><div class="cloud"></div><div class="lightning"><div class="bolt"></div><div class="bolt"></div></div></div>';
-  const snowy = '<div class="icon flurries"><div class="cloud"></div><div class="snow"><div class="flake"></div><div class="flake"></div></div></div>';
+  const stormy = '<div class="thunder-storm"><div class="cloud"></div><div class="lightning"><div class="bolt"></div><div class="bolt"></div></div></div>';
+  const snowy = '<div class="flurries"><div class="cloud"></div><div class="snow"><div class="flake"></div><div class="flake"></div></div></div>';
 
   const iconObj = {
     'rain': rainy,
@@ -34,15 +36,10 @@ const iconPicker = (icon) => {
     'snow': snowy
   };
 
-  // for(var key in iconObj) {
-  //   if(iconObj.hasOwnProperty(key)) {
-  //     console.log(iconObj[key]);
-  //   }
-  // }
-  $('.icon').append(iconObj[icon]);
-  // console.log(iconObj[icon]);
-  console.log(icon);
-}
+  let iconToDisplay = iconObj[icon];
+
+  return iconToDisplay;
+};
 
 const currentConditions = () => {
   $.getJSON('http://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/conditions/q/autoip.json', function(json) {
@@ -63,8 +60,7 @@ const currentConditions = () => {
         $('.weather').html(tempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
       }
     });
-    iconPicker(icon);
-    return icon;
+    $('.icon').append(iconPicker(icon));
   });
 };
 
@@ -74,13 +70,13 @@ const threeDay = () => {
     console.log(json);
     oneDayTempf = json.forecast.simpleforecast.forecastday[1].high.fahrenheit;
     oneDaytempc = json.forecast.simpleforecast.forecastday[1].high.celsius;
-    oneDayicon = json.forecast.simpleforecast.forecastday[1].icon;
+    oneDayIcon = json.forecast.simpleforecast.forecastday[1].icon;
     twoDayTempf = json.forecast.simpleforecast.forecastday[2].high.fahrenheit;
     twoDaytempc = json.forecast.simpleforecast.forecastday[2].high.celsius;
-    twoDayicon = json.forecast.simpleforecast.forecastday[2].icon;
+    twoDayIcon = json.forecast.simpleforecast.forecastday[2].icon;
     threeDayTempf = json.forecast.simpleforecast.forecastday[3].high.fahrenheit;
     threeDaytempc = json.forecast.simpleforecast.forecastday[3].high.celsius;
-    threeDayicon = json.forecast.simpleforecast.forecastday[3].icon;
+    threeDayIcon = json.forecast.simpleforecast.forecastday[3].icon;
     city = json.location.city;
     country = json.location.country_name;
     $('.forecast1').html(oneDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
@@ -99,6 +95,10 @@ const threeDay = () => {
         $('.forecast3').html(threeDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
       }
     });
+    $('.forecast1').append(iconPicker(oneDayIcon));
+    $('.forecast2').append(iconPicker(twoDayIcon));
+    $('.forecast3').append(iconPicker(threeDayIcon));
+    console.log(oneDayIcon, twoDayIcon, threeDayIcon);
   });
 };
 
