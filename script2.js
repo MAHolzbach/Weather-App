@@ -43,7 +43,7 @@ const iconPicker = (icon) => {
 };
 
 const currentConditions = () => {
-  $.getJSON('http://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/conditions/q/autoip.json', function(json) {
+  $.getJSON('https://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/conditions/q/autoip.json', function(json) {
     console.log(json);
     tempf = json.current_observation.temp_f;
     tempc = json.current_observation.temp_c;
@@ -67,7 +67,7 @@ const currentConditions = () => {
 
 const threeDay = () => {
 
-  $.getJSON('http://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/forecast/q/autoip.json', function(json) {
+  $.getJSON('https://api.wunderground.com/api/e95fb12f6c69ae61/geolookup/forecast/q/autoip.json', function(json) {
     console.log(json);
     oneDayTempf = json.forecast.simpleforecast.forecastday[1].high.fahrenheit;
     oneDaytempc = json.forecast.simpleforecast.forecastday[1].high.celsius;
