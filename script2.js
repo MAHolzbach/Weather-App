@@ -21,7 +21,7 @@ const iconPicker = (icon) => {
     'sunny': sunny,
     'mostlysunny': sunny,
     'fog': overcast,
-    'cloudly': overcast,
+    'cloudy': overcast,
     'hazy': partlySunny,
     'mostlycloudy': partlySunny,
     'partlycloudy': partlySunny,
@@ -37,6 +37,7 @@ const iconPicker = (icon) => {
   };
 
   let iconToDisplay = iconObj[icon];
+  console.log(iconToDisplay);
 
   return iconToDisplay;
 };
@@ -77,27 +78,25 @@ const threeDay = () => {
     threeDayTempf = json.forecast.simpleforecast.forecastday[3].high.fahrenheit;
     threeDaytempc = json.forecast.simpleforecast.forecastday[3].high.celsius;
     threeDayIcon = json.forecast.simpleforecast.forecastday[3].icon;
-    city = json.location.city;
-    country = json.location.country_name;
-    $('.forecast1').html(oneDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
-    $('.forecast2').html(twoDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
-    $('.forecast3').html(threeDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
+    $('#forecast1Temp').html(oneDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
+    $('#forecast2Temp').html(twoDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
+    $('#forecast3Temp').html(threeDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
     $('.forecast').on('click', 'a', function(e) {
       e.preventDefault();
       let element = $(e.target);
       if(element.hasClass('scaleF')) {
-        $('.forecast1').html(oneDaytempc + '&deg' + '<a href=# class="scale scaleC">C</a>');
-        $('.forecast2').html(twoDaytempc + '&deg' + '<a href=# class="scale scaleC">C</a>');
-        $('.forecast3').html(threeDaytempc + '&deg' + '<a href=# class="scale scaleC">C</a>');
+        $('#forecast1Temp').html(oneDaytempc + '&deg' + '<a href=# class="scale scaleC">C</a>');
+        $('#forecast2Temp').html(twoDaytempc + '&deg' + '<a href=# class="scale scaleC">C</a>');
+        $('#forecast3Temp').html(threeDaytempc + '&deg' + '<a href=# class="scale scaleC">C</a>');
       } else if (element.hasClass('scaleC')){
-        $('.forecast1').html(oneDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
-        $('.forecast2').html(twoDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
-        $('.forecast3').html(threeDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
+        $('#forecast1Temp').html(oneDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
+        $('#forecast2Temp').html(twoDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
+        $('#forecast3Temp').html(threeDayTempf + '&deg' + '<a href=# class="scale scaleF">F</a>');
       }
     });
-    $('.forecast1').append(iconPicker(oneDayIcon));
-    $('.forecast2').append(iconPicker(twoDayIcon));
-    $('.forecast3').append(iconPicker(threeDayIcon));
+    $('#forecast1Icon').append(iconPicker(oneDayIcon));
+    $('#forecast2Icon').append(iconPicker(twoDayIcon));
+    $('#forecast3Icon').append(iconPicker(threeDayIcon));
     console.log(oneDayIcon, twoDayIcon, threeDayIcon);
   });
 };

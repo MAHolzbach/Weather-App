@@ -33,14 +33,22 @@ body {
   display: flex;
   width: 12em;
   height: 10em;
-  font-size: 1em; /* control icon size here */
+  font-size: 1.5em; /* control icon size here */
 }
 
-.forecast1, .forecast2, .forecast3 {
+#forecast1Icon, #forecast2Icon, #forecast3Icon {
+  color: black;
   position: relative;
+  margin-top: 20px;
   width: 6em;
   height: 5em;
-  font-size: .40em; /* control icon size here */
+  font-size: .25em; /* control icon size here */
+}
+
+#forecast1Temp, #forecast2Temp, #forecast3Temp {
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 .cloud {
