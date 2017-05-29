@@ -51,6 +51,11 @@ body {
   font-weight: bold;
 }
 
+#hatTip {
+  color: white;
+  font-size: 11px;
+}
+
 .cloud {
   position: absolute;
   z-index: 1;
